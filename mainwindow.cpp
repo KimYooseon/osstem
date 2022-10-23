@@ -77,6 +77,17 @@ MainWindow::MainWindow(QWidget *parent)
     connect(clientForm, SIGNAL(sendCInfo(QString, QString, QString)), orderForm, SLOT(CInfoSended(QString, QString, QString)));
 
     connect(clientForm, SIGNAL(clientAdded(QString, int)), serverForm, SLOT(addClientToServer(QString, int)));
+
+
+
+
+    connect(clientForm, SIGNAL(clientModified(QString, int, int)),
+            serverForm, SLOT(modifyClientFromServer(QString, int, int)));
+    connect(clientForm, SIGNAL(clientRemoved(int)),
+            serverForm, SLOT(removeClientFromServer(int)));
+
+
+
     clientForm->loadData();
     QMdiSubWindow *cw = ui->mdiArea->addSubWindow(clientForm);
     ui->mdiArea->addSubWindow(productForm);
@@ -118,5 +129,12 @@ void MainWindow::on_actionChat_triggered()
 {
     wd = new Widget;
     wd->show();
+
+
+    connect(wd, SIGNAL(sendClientNameToServer(QString)),
+            serverForm, SLOT(clientNameSended(QString)));
+    connect(serverForm, SIGNAL(sendNameFlag(int)),
+            wd, SLOT(nameFlagSended(int)));
+
 }
 

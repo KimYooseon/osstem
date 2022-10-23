@@ -68,7 +68,7 @@ void ShopManagerForm::loadData()
             ui->treeWidget->addTopLevelItem(s);
             shopList.insert(sid, s);
 
-            emit orderAdded(row[1]);
+            //emit orderAdded(row[1]);
         }
     }
     file.close( );
@@ -93,8 +93,8 @@ ShopManagerForm::~ShopManagerForm()
         out << s->getCount() << ", ";
         out << s->getPrice() << ", ";
         out << (s->getPrice() * s->getCount()) << ", ";
-        out << s->getAddress() << ", ";
-        out <<s->getPhoneNum() << "\n";
+        out << s->getPhoneNum() << ", ";
+        out <<s->getAddress() << "\n";
 
     }
     file.close( );
@@ -353,4 +353,5 @@ void ShopManagerForm::CInfoSended(QString name, QString phonenumber, QString add
     item->setText(2, address);
     ui->CustomertreeWidget->addTopLevelItem(item);
 }
+
 

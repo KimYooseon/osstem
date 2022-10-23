@@ -45,6 +45,8 @@ private slots:
 
     void on_shopcidcomboBox_textActivated(const QString &arg1);
     void CInfoSended(QString, QString, QString);
+
+
 signals:
     void orderAdded(QString);
     void sendpname(int);
