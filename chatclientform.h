@@ -35,11 +35,11 @@ private slots:
     void receiveData( );			// 서버에서 데이터가 올 때
     void sendData( );               // 서버로 데이터를 보낼 때
     void disconnect( );
-    void sendProtocol(Chat_Status, char*, int = 1020);
+    void sendProtocol(Chat_Status, char*, int = 1020);  //4바이트는 타입
     void sendFile();
     void goOnSend(qint64);
 
-    void nameFlagSended(int);
+    void nameFlagSended(int);       // chatclientform에서 받아온 nameflag를 멤버변수 nameflag에 받아 저장해주는 부분
 
 private:
     void closeEvent(QCloseEvent*) override;
@@ -61,8 +61,8 @@ private:
     qint64 totalSize;               // 전체 파일의 크기
     QByteArray outBlock;            // 전송을 위한 데이터
     bool isSent;                    // 파일 서버에 접속되었는지 확인
-    int flag = 0;
-    int nameflag = 0;
+    int flag = 0;                   // 고객이 스스로 채팅을 나갔는지 아니면 강퇴당한 것인지 판단하기 위한 flag
+    int nameflag = 0;               // chatclientform에서 보낸 이름이 serverform의 고객리스트에 있는지 판단하기 위한 flag
 
 signals:
     void sendClientNameToServer(QString);
