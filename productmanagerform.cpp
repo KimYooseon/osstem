@@ -21,7 +21,11 @@ ProductManagerForm::ProductManagerForm(QWidget *parent) :
     //위젯의 사이즈 설정. 540은 전체 화면의 왼쪽에 해당하는 비중, 400은 전체 화면의 오른쪽에 해당하는 비중
     QList<int> sizes;
     sizes << 540 << 400;
+<<<<<<< HEAD
     //ui->splitter->setSizes(sizes);
+=======
+    ui->splitter->setSizes(sizes);
+>>>>>>> d909dbfecd081b130e3216b38300aa7a71178669
 
     //트리위젯의 컬럼별 너비 설정
     ui->treeWidget->setColumnWidth(0,50);
@@ -37,7 +41,10 @@ ProductManagerForm::ProductManagerForm(QWidget *parent) :
     menu = new QMenu;
     menu->addAction(removeAction);
     ui->treeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
+<<<<<<< HEAD
     ui->productTableView->setContextMenuPolicy(Qt::CustomContextMenu);
+=======
+>>>>>>> d909dbfecd081b130e3216b38300aa7a71178669
 
     connect(ui->treeWidget, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
     connect(ui->searchLineEdit, SIGNAL(returnPressed()),
@@ -64,6 +71,7 @@ void ProductManagerForm::loadData()
         productModel->setHeaderData(2, Qt::Horizontal, tr("Price"));
         productModel->setHeaderData(3, Qt::Horizontal, tr("Category"));
 
+<<<<<<< HEAD
         ui->productTableView->setModel(productModel);
         ui->productTableView->resizeColumnsToContents();
     }
@@ -75,6 +83,21 @@ void ProductManagerForm::loadData()
         QString category= productModel->data(productModel->index(i, 3)).toString();
 
         emit productAdded(productname, price, category, id);
+=======
+    QTextStream in(&file);
+    while (!in.atEnd()) {                       //파일이 끝까지 읽힐 때까지 반복함
+        QString line = in.readLine();
+        QList<QString> row = line.split(", ");  //", "을 기준으로 데이터를 구분해 데이터를 저장함
+        if(row.size()) {                        //행이 0개가 아닐 때
+            int id = row[0].toInt();            //스트링값을 toInt() 함수를 통해 정수값으로 변환
+            int price = row[2].toInt();         //스트링값을 toInt() 함수를 통해 정수값으로 변환
+            ProductItem* p = new ProductItem(id, row[1], price, row[3]);
+            ui->treeWidget->addTopLevelItem(p); //ProductItem을 저장함
+            productList.insert(id, p);          //정보 추가
+
+            emit productAdded(row[1], row[2].toInt(), row[3], row[0].toInt()); //shopmanagerform으로 상품이름, 가격, 카테고리, 상품 id 값을 넘겨줌
+        }
+>>>>>>> d909dbfecd081b130e3216b38300aa7a71178669
     }
 }
 
@@ -121,15 +144,31 @@ void ProductManagerForm::loadData()
 ProductManagerForm::~ProductManagerForm()
 {
     delete ui;
+<<<<<<< HEAD
     QSqlDatabase db = QSqlDatabase::database("productConnection");
     if(db.isOpen()) {
         productModel->submitAll();
         delete productModel;
         db.close();
         QSqlDatabase::removeDatabase("productConnection");
+=======
+
+    //파일을 저장함
+    QFile file("productlist.txt");          //productlist.txt를 열음
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        return;
+
+    QTextStream out(&file);                 //파일이 있을 때
+    for (const auto& v : productList) {     //for문을 통해 productlist의 값을 하나씩 가져옴
+        ProductItem* p = v;                 //p에 각각의 값들을 저장해 줌
+        out << p->id() << ", " << p->getProductName() << ", ";
+        out << p->getPrice() << ", ";
+        out << p->getCategory() << "\n";
+>>>>>>> d909dbfecd081b130e3216b38300aa7a71178669
     }
 }
 
+<<<<<<< HEAD
 //ProductManagerForm::~ProductManagerForm()
 //{
 //    delete ui;
@@ -150,6 +189,9 @@ ProductManagerForm::~ProductManagerForm()
 //}
 
 
+=======
+
+>>>>>>> d909dbfecd081b130e3216b38300aa7a71178669
 /*상품아이디 만들기*/
 int ProductManagerForm::makeId( )
 {
@@ -252,10 +294,13 @@ void ProductManagerForm::on_addPushButton_clicked()
         ui->treeWidget->addTopLevelItem(p);             //treeWidget에 p값을 추가해 줌
     }
     emit productAdded(productname, price, category, id); //productAdded 시그널에 productname, price, category, id를 담아 shopmanagerform으로 정보를 보내준다
+<<<<<<< HEAD
 
     QSqlQuery query;
     query.exec(QString("INSERT INTO product VALUES (%1, '%2', %3, '%4')").arg(id).arg(productname).arg(price).arg(category));
     productModel->select();
+=======
+>>>>>>> d909dbfecd081b130e3216b38300aa7a71178669
 }
 
 /*treeWidget에 있는 item을 클릭했을 때*/

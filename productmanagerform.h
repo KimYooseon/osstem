@@ -42,7 +42,11 @@ signals:
 
 private:
     int makeId();                                   // 상품 번호를 만드는 부분
+<<<<<<< HEAD
     bool createConnection();
+=======
+
+>>>>>>> d909dbfecd081b130e3216b38300aa7a71178669
     QMap<int, ProductItem*> productList;
     Ui::ProductManagerForm *ui;
     QMenu* menu;

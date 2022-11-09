@@ -17,7 +17,11 @@ ShopManagerForm::ShopManagerForm(QWidget *parent) :
     //위젯의 사이즈 설정. 540은 전체 화면의 왼쪽에 해당하는 비중, 650은 전체 화면의 오른쪽에 해당하는 비중
     QList<int> sizes;
     sizes << 540 << 650;
+<<<<<<< HEAD
     //ui->splitter->setSizes(sizes);
+=======
+    ui->splitter->setSizes(sizes);
+>>>>>>> d909dbfecd081b130e3216b38300aa7a71178669
 
     //트리위젯의 컬럼별 너비 설정
     ui->treeWidget->setColumnWidth(0,50);
