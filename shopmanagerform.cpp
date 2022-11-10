@@ -23,6 +23,7 @@ ShopManagerForm::ShopManagerForm(QWidget *parent) :
     //위젯의 사이즈 설정. 540은 전체 화면의 왼쪽에 해당하는 비중, 650은 전체 화면의 오른쪽에 해당하는 비중
     QList<int> sizes;
     sizes << 540 << 650;
+<<<<<<< HEAD
     //ui->splitter->setSizes(sizes);
 
 //    //트리위젯의 컬럼별 너비 설정
@@ -33,6 +34,22 @@ ShopManagerForm::ShopManagerForm(QWidget *parent) :
 //    ui->treeWidget->setColumnWidth(4,50);
 //    ui->treeWidget->setColumnWidth(5,70);
 
+=======
+<<<<<<< HEAD
+    //ui->splitter->setSizes(sizes);
+=======
+    ui->splitter->setSizes(sizes);
+>>>>>>> d909dbfecd081b130e3216b38300aa7a71178669
+
+    //트리위젯의 컬럼별 너비 설정
+    ui->treeWidget->setColumnWidth(0,50);
+    ui->treeWidget->setColumnWidth(1,80);
+    ui->treeWidget->setColumnWidth(2,130);
+    ui->treeWidget->setColumnWidth(3,80);
+    ui->treeWidget->setColumnWidth(4,50);
+    ui->treeWidget->setColumnWidth(5,70);
+
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
     //remove 액션 추가. remove를 클릭했을 때 아이템이 삭제되도록 만듦
     QAction* removeAction = new QAction(tr("&Remove"));
     connect(removeAction, SIGNAL(triggered()), SLOT(removeItem()));
@@ -47,13 +64,19 @@ ShopManagerForm::ShopManagerForm(QWidget *parent) :
     connect(ui->searchLineEdit, SIGNAL(returnPressed()),
             this, SLOT(on_searchPushButton_clicked()));
 
+<<<<<<< HEAD
     connect(ui->shopTableView, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
+=======
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
 
 
 }
 
 // 저장된 텍스트를 가져오는 부분
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
 void ShopManagerForm::loadData()
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "shopConnection");
@@ -75,6 +98,7 @@ void ShopManagerForm::loadData()
         shopModel->setHeaderData(7, Qt::Horizontal, tr("Address"));
         shopModel->setHeaderData(8, Qt::Horizontal, tr("Phone Number"));
 
+<<<<<<< HEAD
         ui->shopTableView->setModel(shopModel);
         ui->shopTableView->resizeColumnsToContents();
     }
@@ -82,6 +106,25 @@ void ShopManagerForm::loadData()
     for(int i = 0; i < shopModel->rowCount(); i++) {
         int id = shopModel->data(shopModel->index(i, 0)).toInt();
         QString name = shopModel->data(shopModel->index(i, 1)).toString();
+=======
+    QTextStream in(&file);
+    while (!in.atEnd()) {                       //파일이 끝까지 읽힐 때까지 반복함
+        QString line = in.readLine();
+        QList<QString> row = line.split(", ");  //", "을 기준으로 데이터를 구분해 데이터를 저장함
+        if(row.size()) {                        //행이 0개가 아닐 때
+            int sid = row[0].toInt();           //스트링값을 toInt() 함수를 통해 정수값으로 변환
+            //int cid = row[1].toInt();
+            //int pid = row[2].toInt();
+            int count = row[4].toInt();         //스트링값을 toInt() 함수를 통해 정수값으로 변환
+            int price = row[5].toInt();         //스트링값을 toInt() 함수를 통해 정수값으로 변환
+            int totalprice = count*price;
+
+            ShopItem* s = new ShopItem(sid, row[1], row[2], row[3], count, price, totalprice, row[7], row[8]);
+            ui->treeWidget->addTopLevelItem(s); //ShopItem을 저장함
+            shopList.insert(sid, s);            //정보 추가
+
+        }
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
     }
 }
 
@@ -116,18 +159,41 @@ void ShopManagerForm::loadData()
 ShopManagerForm::~ShopManagerForm()
 {
     delete ui;
+<<<<<<< HEAD
     QSqlDatabase db = QSqlDatabase::database("shopConnection");
     if(db.isOpen()) {
         shopModel->submitAll();
         delete shopModel;
         db.close();
         QSqlDatabase::removeDatabase("shopConnection");
+=======
+
+    //파일을 저장함
+    QFile file("shoplist.txt");          //shoplist.txt를 열음
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        return;
+
+    QTextStream out(&file);              //파일이 있을 때
+    for (const auto& v : shopList) {     //for문을 통해 productlist의 값을 하나씩 가져옴
+        ShopItem* s = v;                 //s에 각각의 값들을 저장해 줌
+        out << s->SID() << ", ";
+        out << s->getCID() << ", ";
+        out << s->getPID() << ", ";
+        out << s->getDate() << ", ";
+        out << s->getCount() << ", ";
+        out << s->getPrice() << ", ";
+        out << (s->getPrice() * s->getCount()) << ", ";
+        out << s->getPhoneNum() << ", ";
+        out <<s->getAddress() << "\n";
+
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
     }
 }
 //ShopManagerForm::~ShopManagerForm()
 //{
 //    delete ui;
 
+<<<<<<< HEAD
 //    //파일을 저장함
 //    QFile file("shoplist.txt");          //shoplist.txt를 열음
 //    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
@@ -158,6 +224,15 @@ int ShopManagerForm::makeId( )
     } else {
         auto sid = shopModel->data(shopModel->index(shopModel->rowCount()-1, 0)).toInt();     //clientlist의 마지막 키 값 + 1로 다음 키 값을 설정해 줌
 ;   //shopList의 마지막 키 값 + 1로 다음 키 값을 설정해 줌
+=======
+/*쇼핑아이디 만들기*/
+int ShopManagerForm::makeId( )
+{
+    if(shopList.size( ) == 0) {          //상품아이디가 없으면 20000번부터 고객아이디를 부여
+        return 70001;
+    } else {
+        auto sid = shopList.lastKey();   //shopList의 마지막 키 값 + 1로 다음 키 값을 설정해 줌
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
         return ++sid;
     }
 }
@@ -165,6 +240,7 @@ int ShopManagerForm::makeId( )
 /*아이템 삭제*/
 void ShopManagerForm::removeItem()                  //treeWidget에 추가할 아이템을 만들어 줌
 {
+<<<<<<< HEAD
 //    QTreeWidgetItem* item = ui->treeWidget->currentItem();
 //    if(item != nullptr) {                           //아이템이 있을 때
 //        //shopList.remove(item->text(0).toInt());     //쇼핑리스트에서 아이템의 첫번째 컬럼에 해당하는 아이템을 삭제해 줌
@@ -181,14 +257,26 @@ void ShopManagerForm::removeItem()                  //treeWidget에 추가할 �
     query->addBindValue(delid);
     query->exec();
     shopModel->select();
+=======
+    QTreeWidgetItem* item = ui->treeWidget->currentItem();
+    if(item != nullptr) {                           //아이템이 있을 때
+        shopList.remove(item->text(0).toInt());     //쇼핑리스트에서 아이템의 첫번째 컬럼에 해당하는 아이템을 삭제해 줌
+        ui->treeWidget->takeTopLevelItem(ui->treeWidget->indexOfTopLevelItem(item));    //해당하는 상품을 treeWidget에서도 삭제해줌
+        ui->treeWidget->update();                   //treeWidget 업데이트
+    }
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
 }
 
 /*treeWidget 영역에서 마우스 오른쪽버튼 클릭했을 때 메뉴가 나오게 해주는 부분*/
 void ShopManagerForm::showContextMenu(const QPoint &pos)
 {
+<<<<<<< HEAD
 //    QPoint globalPos = ui->treeWidget->mapToGlobal(pos);    //위치를 구해줌
 //    menu->exec(globalPos);                                  //그 위치에 메뉴가 뜨게 만들어 줌
     QPoint globalPos = ui->shopTableView->mapToGlobal(pos);    //위치를 구해줌
+=======
+    QPoint globalPos = ui->treeWidget->mapToGlobal(pos);    //위치를 구해줌
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
     menu->exec(globalPos);                                  //그 위치에 메뉴가 뜨게 만들어 줌
 }
 
@@ -227,6 +315,7 @@ void ShopManagerForm::on_modifyPushButton_clicked()
 {
     QTreeWidgetItem* item = ui->treeWidget->currentItem();      //item에 treeWidget의 현재 아이템을 넣어줌
 
+<<<<<<< HEAD
     //id productname price category
     QString date, cid, pid;
     int count, price, totalprice, sid;
@@ -254,13 +343,34 @@ void ShopManagerForm::on_modifyPushButton_clicked()
     shopModel->select();
 
 
+=======
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
     if(item != nullptr) {                                       //item이 있을 때
         int key = item->text(0).toInt();                        //item의 0번째 인덱스 값인 쇼핑번호를 key에 저장함
 //        int cid = item->text(1).toInt();
 //        int pid = item->text(2).toInt();
 //        int count = item->text(4).toInt();
 
+<<<<<<< HEAD
         //ShopItem* s = shopList[key];                            //shopList[key]에 해당하는 값을 s에 저장해준다
+=======
+        ShopItem* s = shopList[key];                            //shopList[key]에 해당하는 값을 s에 저장해준다
+
+        //id productname price category
+        QString date, cid, pid;
+        int count, price, totalprice;
+        cid = ui->shopcidcomboBox->currentText().right(6).left(5);   //shopcidcomboBox에서 선택한 값을 변수 cid에 저장해준다
+        pid = ui->shoppidcomboBox->currentText().right(6).left(5);   //shoppidcomboBox에서 선택한 값을 변수 pid에 저장해준다
+        //cid = ui->shopcidLineEdit->text().toInt();
+        //pid = ui->shoppidLineEdit->text().toInt();
+        date = ui->dateLineEdit->text();                        //dateLineEdit에 입력한 값을 변수 date에 저장해준다
+        count = ui->countLineEdit->text().toInt();              //countLineEdit에 입력한 값을 변수 count에 저장해준다
+
+
+//수정되도록 만들기
+//        price = ui->treeWidget->currentItem().c
+//        totalprice = ui->
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
 
 
 
@@ -274,7 +384,11 @@ void ShopManagerForm::on_modifyPushButton_clicked()
         s->setPID(pid);
         s->setDate(date);
         s->setCount(count);
+<<<<<<< HEAD
         shopList[key] = s; */                                     //shopList[key]에 s를 넣어준다
+=======
+        shopList[key] = s;                                      //shopList[key]에 s를 넣어준다
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
     }
 
 }
@@ -282,6 +396,7 @@ void ShopManagerForm::on_modifyPushButton_clicked()
 /*add 버튼을 클릭했을 때*/
 void ShopManagerForm::on_addPushButton_clicked()
 {
+    qDebug()<<"ddddddddddddd";
     QString date, cid, pid, address, phonenumber;
     int count, price, totalprice;
     int sid = makeId( );                        //makeId()를 통해 새로운 상품 id 값을 추가해 줌
@@ -296,6 +411,12 @@ void ShopManagerForm::on_addPushButton_clicked()
     cid = ui->shopcidcomboBox->currentText().right(6).left(5);   //shopcidcomboBox에서 선택한 값을 변수 cid에 저장해준다
     pid = ui->shoppidcomboBox->currentText().right(6).left(5);   //shoppidcomboBox에서 선택한 값을 변수 pid에 저장해준다
 
+<<<<<<< HEAD
+=======
+    qDebug() <<"cid: " <<cid;
+    qDebug() <<"pid: " <<pid;
+
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
     date = ui->dateLineEdit->text();            //dateLineEdit에 입력한 값을 변수 date에 저장해준다
     count = ui->countLineEdit->text().toInt();  //countLineEdit에 입력한 값을 변수 count에 저장해준다
 
@@ -306,7 +427,11 @@ void ShopManagerForm::on_addPushButton_clicked()
 
     if(date.length()) {                                                   //날짜 길이가 1이상일 때만 if문 실행
         ShopItem* s = new ShopItem(sid, cid, pid, date, count, price, totalprice, address, phonenumber);
+<<<<<<< HEAD
         //shopList.insert(sid, s);                                          //shopList에 정보들을 넣어줌
+=======
+        shopList.insert(sid, s);                                          //shopList에 정보들을 넣어줌
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
         ui->treeWidget->addTopLevelItem(s);                               //treeWidget에 s값을 추가해 줌
     }
     query->exec(QString("INSERT INTO shoplist VALUES (%1, %2, %3, '%4', %5, %6, %7, '%8', '%9')").arg(sid).arg(cid).arg(pid).arg(date).arg(count).arg(price).arg(totalprice).arg(address).arg(phonenumber));
@@ -331,6 +456,7 @@ void ShopManagerForm::on_treeWidget_itemClicked(QTreeWidgetItem *item, int colum
 }
 
 
+<<<<<<< HEAD
 void ShopManagerForm::on_shopTableView_clicked(const QModelIndex &index)
 {
 
@@ -352,6 +478,8 @@ void ShopManagerForm::on_shopTableView_clicked(const QModelIndex &index)
 
 
 
+=======
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
 /*shopcidcomboBox에 고객이름과 cid를 추가함 (ex. 김유선(100) )*/
 void ShopManagerForm::addClient(QString name, int cid)
 {
@@ -410,7 +538,11 @@ void ShopManagerForm::PInfoSended(QString pname, int price, QString category)
 /*shopcidcomboBox를 클릭했을 때, 해당 정보에서 cid만 빼서 clientmanager로 보내주는 부분*/
 void ShopManagerForm::on_shopcidcomboBox_textActivated(const QString &arg1)
 {
+<<<<<<< HEAD
     int ID = arg1.right(6).left(5).toInt();
+=======
+    int ID = arg1.right(4).left(3).toInt();
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
     emit SendCID(ID);
     qDebug()<<ID;
 }

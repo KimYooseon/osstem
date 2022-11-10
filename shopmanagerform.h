@@ -60,7 +60,11 @@ signals:
 private:
     int makeId();
 
+<<<<<<< HEAD
     //QMap<int, ShopItem*> shopList;  // 쇼핑 번호를 만드는 부분
+=======
+    QMap<int, ShopItem*> shopList;  // 쇼핑 번호를 만드는 부분
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
     Ui::ShopManagerForm *ui;
     QMenu* menu;
 

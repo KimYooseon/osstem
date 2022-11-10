@@ -4,7 +4,14 @@
 #include <QWidget>
 #include <QHash>
 #include <QSqlTableModel>
+<<<<<<< HEAD
 #include <QTableView>
+=======
+<<<<<<< HEAD
+#include <QTableView>
+=======
+>>>>>>> d909dbfecd081b130e3216b38300aa7a71178669
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
 class ClientItem;
 class QMenu;
 class QTreeWidgetItem;
@@ -32,10 +39,19 @@ private slots:
     void on_searchPushButton_clicked();
     void CIDsended(int);                        //orderForm에서 보내온 client의 id를 받는 부분
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
     void on_clientTableView_itemClicked(QTableView *item, int column);
 
     void on_clientTableView_clicked(const QModelIndex &index);
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> d909dbfecd081b130e3216b38300aa7a71178669
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
 signals:
     void clientAdded(QString, int);             // orderForm과 serverForm으로 client의 id와 이름을 보내주는 부분
     void clientModified(QString, int, int);     // client의 정보를 변경했을 때 orderForm과 serverForm으로 특정 인덱스에 대한 client의 id와 이름을 변경하는 부분
@@ -44,12 +60,28 @@ signals:
 private:
     int makeId();                               // 고객 번호를 만드는 부분
     bool createConnection();
+<<<<<<< HEAD
 //    QMap<int, ClientItem*> clientList;
     Ui::ClientManagerForm *ui;
     QMenu* menu;
     QSqlTableModel *clientModel;
     QSqlQuery *query;
 
+=======
+<<<<<<< HEAD
+//    QMap<int, ClientItem*> clientList;
+    Ui::ClientManagerForm *ui;
+    QMenu* menu;
+    QSqlTableModel *clientModel;
+    QSqlQuery *query;
+
+=======
+    QMap<int, ClientItem*> clientList;
+    Ui::ClientManagerForm *ui;
+    QMenu* menu;
+    QSqlTableModel *queryModel;
+>>>>>>> d909dbfecd081b130e3216b38300aa7a71178669
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
 };
 
 #endif // CLIENTMANAGERFORM_H

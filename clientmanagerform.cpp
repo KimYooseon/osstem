@@ -28,8 +28,11 @@ ClientManagerForm::ClientManagerForm(QWidget *parent) :
     //ui 설정 부분
     ui->setupUi(this);
 
+<<<<<<< HEAD
     ui->treeWidget->hide();
 
+=======
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
     //위젯의 사이즈 설정. 540은 전체 화면의 왼쪽에 해당하는 비중, 400은 전체 화면의 오른쪽에 해당하는 비중
     QList<int> sizes;
     sizes << 540 << 400;
@@ -57,8 +60,16 @@ ClientManagerForm::ClientManagerForm(QWidget *parent) :
 
     connect(ui->clientTableView, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> d909dbfecd081b130e3216b38300aa7a71178669
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
 }
 
+// 저장된 텍스트를 가져오는 부분
 void ClientManagerForm::loadData()
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "clientConnection");
@@ -67,6 +78,10 @@ void ClientManagerForm::loadData()
         query= new QSqlQuery(db);
         query->exec("CREATE TABLE IF NOT EXISTS clientlist(c_id INTEGER Primary Key, c_name VARCHAR(30) NOT NULL, c_phonenum VARCHAR(20) NOT NULL, c_address VARCHAR(50));");
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
         clientModel = new QSqlTableModel(this, db);
         clientModel->setTable("clientlist");
         clientModel->select();
@@ -74,6 +89,7 @@ void ClientManagerForm::loadData()
         clientModel->setHeaderData(1, Qt::Horizontal, tr("Name"));
         clientModel->setHeaderData(2, Qt::Horizontal, tr("Phone Number"));
         clientModel->setHeaderData(3, Qt::Horizontal, tr("Address"));
+<<<<<<< HEAD
 
         ui->clientTableView->setModel(clientModel);
         ui->clientTableView->resizeColumnsToContents();
@@ -88,6 +104,52 @@ void ClientManagerForm::loadData()
         //clientList.insert(id, clientModel->index(i, 0));
         emit clientAdded(name, id);
     }
+=======
+
+        ui->clientTableView->setModel(clientModel);
+        ui->clientTableView->resizeColumnsToContents();
+    }
+
+    for(int i = 0; i < clientModel->rowCount(); i++) {
+        int id = clientModel->data(clientModel->index(i, 0)).toInt();
+        QString name = clientModel->data(clientModel->index(i, 1)).toString();
+        //clientList.insert(id, clientModel->index(i, 0));
+        emit clientAdded(name, id);
+    }
+=======
+    QTextStream in(&file);
+    while (!in.atEnd()) {                       //파일이 끝까지 읽힐 때까지 반복함
+        QString line = in.readLine();
+        QList<QString> row = line.split(", ");  //", "을 기준으로 데이터를 구분해 데이터를 저장함
+        if(row.size()) {                        //행이 0개가 아닐 때
+            int id = row[0].toInt();            //스트링값을 toInt() 함수를 통해 정수값으로 변환
+            ClientItem* c = new ClientItem(id, row[1], row[2], row[3]);
+
+            ui->treeWidget->addTopLevelItem(c); //ClientItem을 저장함
+            clientList.insert(id, c);           //정보 추가
+
+            emit clientAdded(row[1], row[0].toInt());   //shopmanagerform으로 고객이름과 고객 id 값을 넘겨줌
+        }
+    }
+    file.close( );
+
+    if(!createConnection()) return;
+    queryModel = new QSqlTableModel;
+    queryModel->setTable("client");
+    queryModel->select();
+
+    //  queryModel->setTable("client");
+    //  queryModel.setQuery("select id, name, phonenumber, address from CLIENT");
+    queryModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    queryModel->select();
+    queryModel->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
+    queryModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Name"));
+    queryModel->setHeaderData(2, Qt::Horizontal, QObject::tr("Phone Number"));
+    queryModel->setHeaderData(3, Qt::Horizontal, QObject::tr("Address"));
+
+    ui->clientTableView->setModel(queryModel);
+>>>>>>> d909dbfecd081b130e3216b38300aa7a71178669
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
 }
 
 ClientManagerForm::~ClientManagerForm()
@@ -102,6 +164,10 @@ ClientManagerForm::~ClientManagerForm()
     }
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
 /*
 ClientManagerForm::~ClientManagerForm()
 {
@@ -114,6 +180,11 @@ ClientManagerForm::~ClientManagerForm()
         QSqlDatabase::removeDatabase("clientConnection");
     }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> d909dbfecd081b130e3216b38300aa7a71178669
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
     //파일을 저장함
     QFile file("clientlist.txt");           //clientlist.txt를 열음
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
@@ -133,10 +204,24 @@ ClientManagerForm::~ClientManagerForm()
 /*고객아이디 만들기*/
 int ClientManagerForm::makeId( )
 {
+<<<<<<< HEAD
     if(clientModel->rowCount() == 0) {           //고객아이디가 없으면 1번부터 고객아이디를 부여
         return 1;
     } else {
         auto id = clientModel->data(clientModel->index(clientModel->rowCount()-1, 0)).toInt();     //clientlist의 마지막 키 값 + 1로 다음 키 값을 설정해 줌
+=======
+<<<<<<< HEAD
+    if(clientModel->rowCount() == 0) {           //고객아이디가 없으면 1번부터 고객아이디를 부여
+        return 1;
+    } else {
+        auto id = clientModel->rowCount();     //clientlist의 마지막 키 값 + 1로 다음 키 값을 설정해 줌
+=======
+    if(clientList.size( ) == 0) {           //고객아이디가 없으면 1번부터 고객아이디를 부여
+        return 1;
+    } else {
+        auto id = clientList.lastKey();     //clientlist의 마지막 키 값 + 1로 다음 키 값을 설정해 줌
+>>>>>>> d909dbfecd081b130e3216b38300aa7a71178669
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
         return ++id;
     }
 }
@@ -146,6 +231,10 @@ void ClientManagerForm::removeItem()
 {
     int i;
     QTreeWidgetItem* item = ui->treeWidget->currentItem();      //treeWidget에 추가할 아이템을 만들어 줌
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
 
     if(item != nullptr) {                                       //아이템이 있을 때
         i = ui->treeWidget->currentIndex().row();           //i는 현재 인덱스 줄 번호
@@ -154,19 +243,65 @@ void ClientManagerForm::removeItem()
         ui->treeWidget->takeTopLevelItem(ui->treeWidget->indexOfTopLevelItem(item));    //해당하는 고객을 treeWidget에서도 삭제해줌
 
         ui->treeWidget->update();                               //treeWidget 업데이트
+<<<<<<< HEAD
         //emit clientRemoved(i);                                  //삭제한 인덱스 정보를 쇼핑매니저로 보내줌
+=======
+        emit clientRemoved(i);                                  //삭제한 인덱스 정보를 쇼핑매니저로 보내줌
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
     }
 
     QModelIndex idx = ui->clientTableView->currentIndex();
     int delid = idx.sibling(idx.row(), 0).data().toInt();
 
+<<<<<<< HEAD
     int row = idx.row();
 
+=======
+    //int row = idx.row();
+    //qDebug()<<row;
+    //qDebug()<<i;
+
+
+    //QSqlQuery query;
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
     query->prepare("DELETE FROM clientlist WHERE c_id = ?;");
     query->addBindValue(delid);
     query->exec();
     clientModel->select();
+<<<<<<< HEAD
     emit clientRemoved(row);
+=======
+=======
+
+    if(item != nullptr) {                                       //아이템이 있을 때
+        i = ui->treeWidget->currentIndex().row();           //i는 현재 인덱스 줄 번호
+        qDebug()<<i;
+        clientList.remove(item->text(0).toInt());               //고객리스트에서 아이템의 첫번째 컬럼에 해당하는 아이템을 삭제해 줌
+        ui->treeWidget->takeTopLevelItem(ui->treeWidget->indexOfTopLevelItem(item));    //해당하는 고객을 treeWidget에서도 삭제해줌
+
+        ui->treeWidget->update();                               //treeWidget 업데이트
+        emit clientRemoved(i);                                  //삭제한 인덱스 정보를 쇼핑매니저로 보내줌
+
+
+
+    }
+    QModelIndex idx = ui->clientTableView->currentIndex();
+    int delid = idx.sibling(idx.row(), 0).data().toInt();
+
+    int row = idx.row();
+    qDebug()<<row;
+    qDebug()<<i;
+
+
+    QSqlQuery query;
+    query.prepare("DELETE FROM client WHERE c_id = ?");
+    query.addBindValue(delid);
+    query.exec();
+    queryModel->select();
+
+
+>>>>>>> d909dbfecd081b130e3216b38300aa7a71178669
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
 }
 
 /*treeWidget 영역에서 마우스 오른쪽버튼 클릭했을 때 메뉴가 나오게 해주는 부분*/
@@ -186,6 +321,7 @@ void ClientManagerForm::on_searchPushButton_clicked()
     int i = ui->searchComboBox->currentIndex();     //i에 검색콤보박스의 현재인덱스 번호를 저장해준다
     auto flag = (i)? Qt::MatchCaseSensitive|Qt::MatchContains   //flag값을 지정해 줌. i가 0이 아닐 때는 입력한 값이 포함되면 검색이 되도록 만듦
                    : Qt::MatchCaseSensitive;                    //i가 0이 아닌 값일 때는 입력한 값이 정확할 때만 검색이 되도록 만듦
+<<<<<<< HEAD
     QModelIndexList clients = clientModel->match(clientModel->index(0,i),Qt::EditRole, ui->searchLineEdit->text(),-1,Qt::MatchFlags(flag));
 
 
@@ -199,6 +335,20 @@ void ClientManagerForm::on_searchPushButton_clicked()
         new QTreeWidgetItem(ui->searchTreeWidget,clientStrings);
         for(int i = 0; i<ui->searchTreeWidget->columnCount(); i++)
             ui->searchTreeWidget->resizeColumnToContents(i);
+=======
+    {
+        auto items = ui->treeWidget->findItems(ui->searchLineEdit->text(), flag, i);    //flag와 i값에 해당하는 정보를 searchLineEdit에 입력한 텍스트를 찾고, items에 해당 값을 저장해준다
+
+        foreach(auto i, items) {                                            //아이템들을 하나씩 꺼내옴
+            ClientItem* c = static_cast<ClientItem*>(i);                    //i의 자료형을 ClientItem이라는 형식으로 변환하고 고정
+            int id = c->id();
+            QString name = c->getName();
+            QString number = c->getPhoneNumber();
+            QString address = c->getAddress();
+            ClientItem* item = new ClientItem(id, name, number, address);   //id, name, number, address를 item에 넣어줌
+            ui->searchTreeWidget->addTopLevelItem(item);                    //item을 searchTreeWidget의 맨 위에 추가해 줌
+        }
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
     }
 
 }
@@ -207,6 +357,10 @@ void ClientManagerForm::on_searchPushButton_clicked()
 void ClientManagerForm::on_modifyPushButton_clicked()
 {
     QTreeWidgetItem* item = ui->treeWidget->currentItem();      //item에 treeWidget의 현재 아이템을 넣어줌
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
 
 
     QString name, number, address;
@@ -215,11 +369,14 @@ void ClientManagerForm::on_modifyPushButton_clicked()
     number = ui->phoneNumberLineEdit->text();               //phoneNumberLineEdit에 입력한 값을 변수 name에 저장해준다
     address = ui->addressLineEdit->text();                  //addressLineEdit에 입력한 값을 변수 name에 저장해준다
 
+<<<<<<< HEAD
     QModelIndex idx = ui->clientTableView->currentIndex();
     int delid = idx.sibling(idx.row(), 0).data().toInt();
 
     int row = idx.row();
 
+=======
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
     //QSqlQuery query;
     query->prepare("UPDATE clientlist SET c_name=?, c_phonenum=?, c_address=? WHERE c_id=?");
     query->bindValue(0, name);
@@ -229,8 +386,11 @@ void ClientManagerForm::on_modifyPushButton_clicked()
     query->exec();
     clientModel->select();
 
+<<<<<<< HEAD
     emit clientModified(name, cid, row);
 
+=======
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
 
     if(item != nullptr) {                                       //item이 있을 때
         int key = item->text(0).toInt();                        //item의 0번째 인덱스 값인 고객번호를 key에 저장함
@@ -242,12 +402,46 @@ void ClientManagerForm::on_modifyPushButton_clicked()
         //c->setAddress(address);
         //clientList[key] = c;                                    //clientList[key]에 c를 넣어준다
 
+<<<<<<< HEAD
         //emit clientModified(name, key, i);                      //name, key, i를 시그널을 통해 shopmanagerform으로 보내준다
 
+=======
+        emit clientModified(name, key, i);                      //name, key, i를 시그널을 통해 shopmanagerform으로 보내준다
+
+=======
+    if(item != nullptr) {                                       //item이 있을 때
+        int i = ui->treeWidget->currentIndex().row();           //treeWidget의 현재 인덱스 줄 번호를 i에 저장
+        int key = item->text(0).toInt();                        //item의 0번째 인덱스 값인 고객번호를 key에 저장함
+        ClientItem* c = clientList[key];                        //clientList[key]에 해당하는 값을 ClientItem에 저장해준다
+        QString name, number, address;
+        name = ui->nameLineEdit->text();                        //nameLineEdit에 입력한 값을 변수 name에 저장해준다
+        number = ui->phoneNumberLineEdit->text();               //phoneNumberLineEdit에 입력한 값을 변수 name에 저장해준다
+        address = ui->addressLineEdit->text();                  //addressLineEdit에 입력한 값을 변수 name에 저장해준다
+        c->setName(name);
+        c->setPhoneNumber(number);
+        c->setAddress(address);
+        clientList[key] = c;                                    //clientList[key]에 c를 넣어준다
+
+        emit clientModified(name, key, i);                      //name, key, i를 시그널을 통해 shopmanagerform으로 보내준다
+
+        QSqlQuery query;
+        query.exec("UPDATE client SET() c_name=?, c_phonenum=?, c_addr=?) WHERE c_id=?");
+        query.addBindValue(name);
+        query.addBindValue(number);
+        query.addBindValue(address);
+        query.addBindValue(key);
+        query.exec();
+        queryModel->select();
+>>>>>>> d909dbfecd081b130e3216b38300aa7a71178669
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
     }
 
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
 
 /*add 버튼을 클릭했을 때*/
 /*void ClientManagerForm::on_addPushButton_clicked()
@@ -273,6 +467,12 @@ void ClientManagerForm::on_modifyPushButton_clicked()
     }
 }*/
 
+<<<<<<< HEAD
+=======
+=======
+/*add 버튼을 클릭했을 때*/
+>>>>>>> d909dbfecd081b130e3216b38300aa7a71178669
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
 void ClientManagerForm::on_addPushButton_clicked()
 {
     QString name, number, address;
@@ -289,12 +489,25 @@ void ClientManagerForm::on_addPushButton_clicked()
     address = ui->addressLineEdit->text();      //addressLineEdit에 입력한 값을 변수 name에 저장해준다
     if(name.length()) {                         //이름 길이가 1이상일 때만 if문 실행
         ClientItem* c = new ClientItem(id, name, number, address);
+<<<<<<< HEAD
         //clientList.insert(id, c);               //clientList에 정보들을 넣어줌
         ui->treeWidget->addTopLevelItem(c);     //treeWidget에 c값을 추가해 줌
         ui->clientTableView->resizeColumnsToContents();
         emit clientAdded(name, id);             //clientAdded 시그널에 name과 id를 담아 shopmanagerform으로 정보를 보내준다
     }
 
+=======
+<<<<<<< HEAD
+        //clientList.insert(id, c);               //clientList에 정보들을 넣어줌
+=======
+        clientList.insert(id, c);               //clientList에 정보들을 넣어줌
+>>>>>>> d909dbfecd081b130e3216b38300aa7a71178669
+        ui->treeWidget->addTopLevelItem(c);     //treeWidget에 c값을 추가해 줌
+        emit clientAdded(name, id);             //clientAdded 시그널에 name과 id를 담아 shopmanagerform으로 정보를 보내준다
+    }
+
+<<<<<<< HEAD
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
     //QSqlQuery query;
     query->exec(QString("INSERT INTO clientlist VALUES (%1, '%2', '%3', '%4')").arg(id).arg(name).arg(number).arg(address));
     clientModel->select();
@@ -303,6 +516,16 @@ void ClientManagerForm::on_addPushButton_clicked()
 }
 
 
+<<<<<<< HEAD
+=======
+=======
+    QSqlQuery query;
+    query.exec(QString("INSERT INTO client VALUES (%1, '%2', '%3', '%4')").arg(id).arg(name).arg(number).arg(address));
+    queryModel->select();
+}
+
+>>>>>>> d909dbfecd081b130e3216b38300aa7a71178669
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
 /*treeWidget에 있는 item을 클릭했을 때*/
 void ClientManagerForm::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column)
 {
@@ -314,9 +537,20 @@ void ClientManagerForm::on_treeWidget_itemClicked(QTreeWidgetItem *item, int col
     ui->toolBox->setCurrentIndex(0);                    //treeWidget에 있는 아이템을 선택했을 때 toolBox의 0번째 인덱스 값인 Input을 현재 화면으로 설정
 }
 
+<<<<<<< HEAD
 
 void ClientManagerForm::on_clientTableView_clicked(const QModelIndex &index)
 {
+=======
+<<<<<<< HEAD
+
+void ClientManagerForm::on_clientTableView_clicked(const QModelIndex &index)
+{
+    qDebug() <<index;
+    qDebug() <<index.row();
+
+
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
     //QModelIndex idx = ui->clientTableView->currentIndex();
     int id = index.sibling(index.row(), 0).data().toInt();
     QString name = index.sibling(index.row(), 1).data().toString();
@@ -340,13 +574,17 @@ void ClientManagerForm::on_clientTableView_itemClicked(QTableView *item, int col
     //ui->phoneNumberLineEdit->setText(item->text(2));    //item의 인덱스 2번 값에 고객전화번호를 저장해 줌
     //ui->addressLineEdit->setText(item->text(3));        //item의 인덱스 3번 값에 고객주소를 저장해 줌
     //ui->toolBox->setCurrentIndex(0);                    //treeWidget에 있는 아이템을 선택했을 때 toolBox의 0번째 인덱스 값인 Input을 현재 화면으로 설정
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
 }
 
 
 /*shopmanagerform에서 cid를 받는 부분*/
 void ClientManagerForm::CIDsended(int id){
+<<<<<<< HEAD
 
     //ClientItem *c = clientList[id]; //받은 cid에 대한 정보들을 c에 저장하고, name, phonenumber, address를 각각 변수에 저장해준다
     //QString name = c->getName();
@@ -382,6 +620,39 @@ void ClientManagerForm::CIDsended(int id){
 
 }
 
+=======
+    //ClientItem *c = clientList[id]; //받은 cid에 대한 정보들을 c에 저장하고, name, phonenumber, address를 각각 변수에 저장해준다
+    //QString name = c->getName();
+    //QString phonenumber = c->getPhoneNumber();
+    //QString address = c->getAddress();
+
+    //emit sendCInfo(name, phonenumber, address); //name, phonenumber, address의 값들을 shopmanagerform으로 보내준다
+=======
+/*shopmanagerform에서 cid를 받는 부분*/
+void ClientManagerForm::CIDsended(int id){
+    ClientItem *c = clientList[id]; //받은 cid에 대한 정보들을 c에 저장하고, name, phonenumber, address를 각각 변수에 저장해준다
+    QString name = c->getName();
+    QString phonenumber = c->getPhoneNumber();
+    QString address = c->getAddress();
+
+    emit sendCInfo(name, phonenumber, address); //name, phonenumber, address의 값들을 shopmanagerform으로 보내준다
+}
+
+bool ClientManagerForm::createConnection()
+{
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("client.db");
+    if(!db.open()) return false;
+
+    QSqlQuery* query = new QSqlQuery;
+    query->exec("CREATE TABLE IF NOT EXISTS client(c_id INTEGER Primary Key,"
+                "c_name VARCHAR(100) NOT NULL, c_phonenum VARCHAR(200) NOT NULL, c_addr VARCHAR(100) NOT NULL);");
+
+    return true;
+>>>>>>> d909dbfecd081b130e3216b38300aa7a71178669
+}
+
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
 /*
 bool ClientManagerForm::createConnection()
 {

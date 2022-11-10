@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
+<<<<<<< HEAD
 <!-- Written by QtCreator 8.0.1, 2022-11-10T18:13:08. -->
+=======
+<<<<<<< HEAD
+<!-- Written by QtCreator 8.0.1, 2022-11-09T19:14:26. -->
+=======
+<!-- Written by QtCreator 8.0.1, 2022-11-08T21:07:53. -->
+>>>>>>> d909dbfecd081b130e3216b38300aa7a71178669
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -235,8 +243,14 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+<<<<<<< HEAD
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/KOSA/Documents/Osstem_QtProject_KimYooseon(2)/Osstem_QtProject_KimYooseon/OsstemPJ_KimYooseon(3)/CSApp.pro</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/KOSA/Documents/Osstem_QtProject_KimYooseon(2)/Osstem_QtProject_KimYooseon/OsstemPJ_KimYooseon(3)/CSApp.pro</value>
+=======
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">CSApp2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/KOSA/Documents/Osstem_QtProject_KimYooseon(2)/Osstem_QtProject_KimYooseon/OsstemPJ_KimYooseon/CSApp.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/KOSA/Documents/Osstem_QtProject_KimYooseon(2)/Osstem_QtProject_KimYooseon/OsstemPJ_KimYooseon/CSApp.pro</value>
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>

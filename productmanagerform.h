@@ -32,7 +32,10 @@ private slots:
     void on_modifyPushButton_clicked();
     void on_searchPushButton_clicked();
     void PIDsended(int);                    //orderForm에서 보내온 product의 id를 받는 부분
+<<<<<<< HEAD
     void on_productTableView_clicked(const QModelIndex &index);
+=======
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
 
 signals:
     void productAdded(QString, int, QString, int);  // orderForm과 serverForm으로 product의 상품id와 이름을 보내주는 부분
@@ -43,8 +46,17 @@ signals:
 
 private:
     int makeId();                                   // 상품 번호를 만드는 부분
+<<<<<<< HEAD
     bool createConnection();
     //QMap<int, ProductItem*> productList;
+=======
+<<<<<<< HEAD
+    bool createConnection();
+=======
+
+>>>>>>> d909dbfecd081b130e3216b38300aa7a71178669
+    QMap<int, ProductItem*> productList;
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
     Ui::ProductManagerForm *ui;
     QMenu* menu;
     QSqlTableModel *productModel;
