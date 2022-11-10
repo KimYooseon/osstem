@@ -22,6 +22,9 @@
      <widget class="QWidget" name="layoutWidget">
       <layout class="QVBoxLayout" name="listVerticalLayout">
        <item>
+        <widget class="QTableView" name="clientTableView"/>
+       </item>
+       <item>
         <widget class="QTreeWidget" name="treeWidget">
          <property name="rootIsDecorated">
           <bool>false</bool>
@@ -59,8 +62,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>211</width>
-         <height>240</height>
+         <width>178</width>
+         <height>230</height>
         </rect>
        </property>
        <attribute name="label">
@@ -165,7 +168,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>211</width>
+         <width>169</width>
          <height>240</height>
         </rect>
        </property>
