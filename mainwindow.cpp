@@ -7,11 +7,14 @@
 #include "chatserverform.h"
 #include "chatclientform.h"
 
+#include <QAction>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    //QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+
     /*ui를 구성한다*/
     ui->setupUi(this);
 
@@ -86,6 +89,19 @@ MainWindow::MainWindow(QWidget *parent)
     connect(productForm, SIGNAL(sendPInfo(QString, int, QString)), orderForm, SLOT(PInfoSended(QString, int, QString)));
 
 
+//    QToolBar* buttons = new QToolBar(this);
+//    buttons->setIconSize(QSize(50,50));
+
+    ui->toolBar->setIconSize(QSize(60,60));
+    ui->actionClient->setIcon(QIcon("client.png"));
+    ui->actionProduct->setIcon(QIcon("product.png"));
+    ui->actionOrder->setIcon(QIcon("shop.png"));
+
+    ui->actionChat->setIcon(QIcon("chat.png"));
+    ui->actionServer->setIcon(QIcon("chatserver.png"));
+    ui->actionQuit->setIcon(QIcon("close.png"));
+
+
     /*텍스토로 저장되어 있는 기존의 정보들을 불러온다*/
     clientForm->loadData();
     productForm->loadData();
@@ -142,5 +158,13 @@ void MainWindow::on_actionChat_triggered()
     /*serverForm에서 받았던 고객 이름이 chatclient에 있는지 확인해 고객리스트에 있다면 1 없다면 0인 nameflag값을 보내준다*/
     connect(serverForm, SIGNAL(sendNameFlag(int)),
             wd, SLOT(nameFlagSended(int)));
+}
+
+
+void MainWindow::on_actionServer_triggered()
+{
+    if(serverForm != nullptr) {
+        serverForm->setFocus();
+    }
 }
 

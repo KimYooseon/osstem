@@ -3,10 +3,12 @@
 
 #include <QWidget>
 #include <QHash>
+#include <QSqlTableModel>
 
 class ProductItem;
 class QMenu;
 class QTreeWidgetItem;
+class QStandardItemModel;
 
 namespace Ui {
 class ProductManagerForm;
@@ -31,6 +33,7 @@ private slots:
     void on_modifyPushButton_clicked();
     void on_searchPushButton_clicked();
     void PIDsended(int);                    //orderForm에서 보내온 product의 id를 받는 부분
+    void on_productTableView_clicked(const QModelIndex &index);
 
 signals:
     void productAdded(QString, int, QString, int);  // orderForm과 serverForm으로 product의 상품id와 이름을 보내주는 부분
@@ -41,10 +44,13 @@ signals:
 
 private:
     int makeId();                                   // 상품 번호를 만드는 부분
-
-    QMap<int, ProductItem*> productList;
+    bool createConnection();
+    //QMap<int, ProductItem*> productList;
     Ui::ProductManagerForm *ui;
     QMenu* menu;
+    QSqlTableModel *productModel;
+    QSqlQuery *query;
+    QStandardItemModel* searchModel;
 };
 
 #endif // PRODUCTMANAGERFORM_H

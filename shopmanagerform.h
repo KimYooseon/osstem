@@ -3,10 +3,13 @@
 
 #include <QWidget>
 #include <QHash>
+#include <QSqlTableModel>
+#include <QTableView>
 
 class ShopItem;
 class QMenu;
 class QTreeWidgetItem;
+class QStandardItemModel;
 
 namespace Ui {
 class ShopManagerForm;
@@ -48,7 +51,7 @@ private slots:
     void on_shopcidcomboBox_textActivated(const QString &arg1);
     /*name, phonenumber, address 값을 customermanagerform에서 받아와 CustomertreeWidget에 띄워주는 부분*/
     void CInfoSended(QString, QString, QString);
-
+    void on_shopTableView_clicked(const QModelIndex &index);
 
 signals:
     void orderAdded(QString);
@@ -58,9 +61,15 @@ signals:
 private:
     int makeId();
 
-    QMap<int, ShopItem*> shopList;  // 쇼핑 번호를 만드는 부분
+    //QMap<int, ShopItem*> shopList;  // 쇼핑 번호를 만드는 부분
     Ui::ShopManagerForm *ui;
     QMenu* menu;
+
+    QSqlTableModel *shopModel;
+    QSqlQuery *query;
+    QStandardItemModel* searchModel;
+//    QStandardItemModel* searchCustomerModel;
+//    QStandardItemModel* searchProductModel;
 };
 
 #endif // SHOPMANAGERFORM_H

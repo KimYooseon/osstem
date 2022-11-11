@@ -31,6 +31,8 @@ private slots:
 
     void on_actionChat_triggered();
 
+    void on_actionServer_triggered();
+
 private:
     Ui::MainWindow *ui;
     ClientManagerForm *clientForm;
