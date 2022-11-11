@@ -13,8 +13,21 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+<<<<<<< HEAD
     //QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
 
+=======
+<<<<<<< HEAD
+    //QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+
+=======
+<<<<<<< HEAD
+    //QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+
+=======
+>>>>>>> d909dbfecd081b130e3216b38300aa7a71178669
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
+>>>>>>> d4bb97a7110e1e254903e178b9e5539cff2110d3
     /*ui를 구성한다*/
     ui->setupUi(this);
 

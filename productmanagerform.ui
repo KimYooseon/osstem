@@ -17,6 +17,7 @@
    <item>
     <layout class="QGridLayout" name="gridLayout">
      <item row="1" column="0">
+<<<<<<< HEAD
       <widget class="QTableView" name="productTableView">
        <property name="editTriggers">
         <set>QAbstractItemView::NoEditTriggers</set>
@@ -62,12 +63,50 @@
        </column>
       </widget>
      </item>
+=======
+      <widget class="QTableView" name="productTableView"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QTreeWidget" name="treeWidget">
+       <property name="rootIsDecorated">
+        <bool>false</bool>
+       </property>
+       <property name="itemsExpandable">
+        <bool>false</bool>
+       </property>
+       <column>
+        <property name="text">
+         <string>ID</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>ProductName</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Price</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Category</string>
+        </property>
+       </column>
+      </widget>
+     </item>
+>>>>>>> d4bb97a7110e1e254903e178b9e5539cff2110d3
     </layout>
    </item>
    <item>
     <widget class="QToolBox" name="toolBox">
      <property name="currentIndex">
+<<<<<<< HEAD
       <number>1</number>
+=======
+      <number>0</number>
+>>>>>>> d4bb97a7110e1e254903e178b9e5539cff2110d3
      </property>
      <widget class="QWidget" name="inputPage">
       <property name="geometry">
@@ -189,6 +228,7 @@
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>
+<<<<<<< HEAD
         <widget class="QTableView" name="searchTableView">
          <property name="editTriggers">
           <set>QAbstractItemView::NoEditTriggers</set>
@@ -202,6 +242,8 @@
         </widget>
        </item>
        <item>
+=======
+>>>>>>> d4bb97a7110e1e254903e178b9e5539cff2110d3
         <widget class="QTreeWidget" name="searchTreeWidget">
          <property name="rootIsDecorated">
           <bool>false</bool>

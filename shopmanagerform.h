@@ -61,15 +61,26 @@ signals:
 private:
     int makeId();
 
+<<<<<<< HEAD
     //QMap<int, ShopItem*> shopList;  // 쇼핑 번호를 만드는 부분
+=======
+<<<<<<< HEAD
+    //QMap<int, ShopItem*> shopList;  // 쇼핑 번호를 만드는 부분
+=======
+    QMap<int, ShopItem*> shopList;  // 쇼핑 번호를 만드는 부분
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
+>>>>>>> d4bb97a7110e1e254903e178b9e5539cff2110d3
     Ui::ShopManagerForm *ui;
     QMenu* menu;
 
     QSqlTableModel *shopModel;
     QSqlQuery *query;
+<<<<<<< HEAD
     QStandardItemModel* searchModel;
 //    QStandardItemModel* searchCustomerModel;
 //    QStandardItemModel* searchProductModel;
+=======
+>>>>>>> d4bb97a7110e1e254903e178b9e5539cff2110d3
 };
 
 #endif // SHOPMANAGERFORM_H
