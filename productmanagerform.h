@@ -26,13 +26,28 @@ public:
 
 private slots:
     /* QTreeWidget을 위한 슬롯 */
+<<<<<<< HEAD
+=======
+    void on_treeWidget_itemClicked(QTreeWidgetItem *item, int column);  //treeWidget에 있는 아이템을 클릭했을 때 그 아이템에 해당하는 정보가 LineEdit에 값들이 뜸
+>>>>>>> 06db11e7a6a4eec6acd82a0723527bc089e7bb97
     void showContextMenu(const QPoint &);
     void removeItem();                      /* QAction을 위한 슬롯 */
     void on_addPushButton_clicked();
     void on_modifyPushButton_clicked();
     void on_searchPushButton_clicked();
     void PIDsended(int);                    //orderForm에서 보내온 product의 id를 받는 부분
+<<<<<<< HEAD
     void on_productTableView_clicked(const QModelIndex &index);
+=======
+<<<<<<< HEAD
+    void on_productTableView_clicked(const QModelIndex &index);
+=======
+<<<<<<< HEAD
+    void on_productTableView_clicked(const QModelIndex &index);
+=======
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
+>>>>>>> d4bb97a7110e1e254903e178b9e5539cff2110d3
+>>>>>>> 06db11e7a6a4eec6acd82a0723527bc089e7bb97
 
 signals:
     void productAdded(QString, int, QString, int);  // orderForm과 serverForm으로 product의 상품id와 이름을 보내주는 부분
@@ -43,12 +58,38 @@ signals:
 
 private:
     int makeId();                                   // 상품 번호를 만드는 부분
+<<<<<<< HEAD
     bool createConnection();
+=======
+<<<<<<< HEAD
+    bool createConnection();
+    //QMap<int, ProductItem*> productList;
+=======
+<<<<<<< HEAD
+    bool createConnection();
+    //QMap<int, ProductItem*> productList;
+=======
+<<<<<<< HEAD
+    bool createConnection();
+=======
+
+>>>>>>> d909dbfecd081b130e3216b38300aa7a71178669
+    QMap<int, ProductItem*> productList;
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
+>>>>>>> d4bb97a7110e1e254903e178b9e5539cff2110d3
+>>>>>>> 06db11e7a6a4eec6acd82a0723527bc089e7bb97
     Ui::ProductManagerForm *ui;
     QMenu* menu;
     QSqlTableModel *productModel;
     QSqlQuery *query;
+<<<<<<< HEAD
     QStandardItemModel* searchModel;
+=======
+<<<<<<< HEAD
+    QStandardItemModel* searchModel;
+=======
+>>>>>>> d4bb97a7110e1e254903e178b9e5539cff2110d3
+>>>>>>> 06db11e7a6a4eec6acd82a0723527bc089e7bb97
 };
 
 #endif // PRODUCTMANAGERFORM_H

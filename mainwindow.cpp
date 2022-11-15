@@ -14,7 +14,25 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+    //QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+
+=======
+<<<<<<< HEAD
+    //QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+
+=======
+<<<<<<< HEAD
+    //QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+
+=======
+>>>>>>> d909dbfecd081b130e3216b38300aa7a71178669
+>>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
+>>>>>>> d4bb97a7110e1e254903e178b9e5539cff2110d3
+>>>>>>> 06db11e7a6a4eec6acd82a0723527bc089e7bb97
     /*ui를 구성한다*/
     ui->setupUi(this);
     setWindowTitle(tr("Customer Management Program"));
@@ -90,9 +108,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(productForm, SIGNAL(sendPInfo(QString, int, QString)), orderForm, SLOT(PInfoSended(QString, int, QString)));
 
 
+<<<<<<< HEAD
 //    connect(chatclientForm, SIGNAL(sendName(QString), chatLogThread, SLOT(NameSended(QString));
 
 
+=======
+>>>>>>> 06db11e7a6a4eec6acd82a0723527bc089e7bb97
 //    QToolBar* buttons = new QToolBar(this);
 //    buttons->setIconSize(QSize(50,50));
 

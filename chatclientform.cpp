@@ -30,7 +30,10 @@ Widget::Widget(QWidget *parent) : QWidget(parent), isSent(false) {
     QSettings settings("ChatClient", "Chat Client");
     name->setText(settings.value("ChatClient/ID").toString());
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 06db11e7a6a4eec6acd82a0723527bc089e7bb97
     /*서버 주소를 127.0.0.1로 설정함*/
     serverAddress = new QLineEdit(this);
     serverAddress->setText("127.0.0.1");
