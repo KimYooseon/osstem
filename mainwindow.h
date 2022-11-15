@@ -12,7 +12,7 @@ class ProductManagerForm;
 class ShopManagerForm;
 class ChatServerForm;
 class Widget;
-
+class ClientLogThread;
 
 class MainWindow : public QMainWindow
 {
@@ -31,6 +31,8 @@ private slots:
 
     void on_actionChat_triggered();
 
+    void on_actionServer_triggered();
+
 private:
     Ui::MainWindow *ui;
     ClientManagerForm *clientForm;
@@ -38,6 +40,7 @@ private:
     ShopManagerForm* orderForm;
     ChatServerForm* serverForm;
     Widget* wd;
+    ClientLogThread* clientLogTh;
 
 
 };
