@@ -34,7 +34,6 @@ public slots:
 
 private slots:
     /* QTreeWidget을 위한 슬롯 */
-    void on_treeWidget_itemClicked(QTreeWidgetItem *item, int column);
     void showContextMenu(const QPoint &);
     void removeItem();              /* QAction을 위한 슬롯 */
     void on_addPushButton_clicked();
@@ -67,9 +66,13 @@ private:
 <<<<<<< HEAD
     //QMap<int, ShopItem*> shopList;  // 쇼핑 번호를 만드는 부분
 =======
+<<<<<<< HEAD
+    //QMap<int, ShopItem*> shopList;  // 쇼핑 번호를 만드는 부분
+=======
     QMap<int, ShopItem*> shopList;  // 쇼핑 번호를 만드는 부분
 >>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
 >>>>>>> d4bb97a7110e1e254903e178b9e5539cff2110d3
+>>>>>>> 06db11e7a6a4eec6acd82a0723527bc089e7bb97
     Ui::ShopManagerForm *ui;
     QMenu* menu;
 
@@ -80,7 +83,13 @@ private:
 //    QStandardItemModel* searchCustomerModel;
 //    QStandardItemModel* searchProductModel;
 =======
+<<<<<<< HEAD
+    QStandardItemModel* searchModel;
+//    QStandardItemModel* searchCustomerModel;
+//    QStandardItemModel* searchProductModel;
+=======
 >>>>>>> d4bb97a7110e1e254903e178b9e5539cff2110d3
+>>>>>>> 06db11e7a6a4eec6acd82a0723527bc089e7bb97
 };
 
 #endif // SHOPMANAGERFORM_H

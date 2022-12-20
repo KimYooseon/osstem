@@ -3,13 +3,14 @@
 
 #include <QWidget>
 #include <QDataStream>
-
+#include "clientLogthread.h"
 class QTextEdit;
 class QLineEdit;
 class QTcpSocket;
 class QPushButton;
 class QFile;
 class QProgressDialog;
+class QTreeWidget;
 
 typedef enum {
     Chat_Login,             // 로그인(서버 접속)   --> 초대를 위한 정보 저장
@@ -64,6 +65,8 @@ private:
     int flag = 0;                   // 고객이 스스로 채팅을 나갔는지 아니면 강퇴당한 것인지 판단하기 위한 flag
     int nameflag = 0;               // chatclientform에서 보낸 이름이 serverform의 고객리스트에 있는지 판단하기 위한 flag
 
+    QTreeWidget* clientLog;
+    ClientLogThread* clientTh;
 signals:
     void sendClientNameToServer(QString);
 };

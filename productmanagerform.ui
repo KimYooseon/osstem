@@ -18,6 +18,9 @@
     <layout class="QGridLayout" name="gridLayout">
      <item row="1" column="0">
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 06db11e7a6a4eec6acd82a0723527bc089e7bb97
       <widget class="QTableView" name="productTableView">
        <property name="editTriggers">
         <set>QAbstractItemView::NoEditTriggers</set>
@@ -33,6 +36,8 @@
        </attribute>
       </widget>
      </item>
+<<<<<<< HEAD
+=======
      <item row="2" column="0">
       <widget class="QTreeWidget" name="treeWidget">
        <property name="rootIsDecorated">
@@ -97,6 +102,7 @@
       </widget>
      </item>
 >>>>>>> d4bb97a7110e1e254903e178b9e5539cff2110d3
+>>>>>>> 06db11e7a6a4eec6acd82a0723527bc089e7bb97
     </layout>
    </item>
    <item>
@@ -105,8 +111,12 @@
 <<<<<<< HEAD
       <number>1</number>
 =======
+<<<<<<< HEAD
+      <number>1</number>
+=======
       <number>0</number>
 >>>>>>> d4bb97a7110e1e254903e178b9e5539cff2110d3
+>>>>>>> 06db11e7a6a4eec6acd82a0723527bc089e7bb97
      </property>
      <widget class="QWidget" name="inputPage">
       <property name="geometry">
@@ -229,6 +239,9 @@
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 06db11e7a6a4eec6acd82a0723527bc089e7bb97
         <widget class="QTableView" name="searchTableView">
          <property name="editTriggers">
           <set>QAbstractItemView::NoEditTriggers</set>
@@ -242,6 +255,8 @@
         </widget>
        </item>
        <item>
+<<<<<<< HEAD
+=======
 =======
 >>>>>>> d4bb97a7110e1e254903e178b9e5539cff2110d3
         <widget class="QTreeWidget" name="searchTreeWidget">
@@ -271,6 +286,7 @@
         </widget>
        </item>
        <item>
+>>>>>>> 06db11e7a6a4eec6acd82a0723527bc089e7bb97
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
           <widget class="QComboBox" name="searchComboBox">

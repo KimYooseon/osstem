@@ -16,17 +16,24 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QProgressDialog>
+#include <QTreeWidget>
 
 #define BLOCK_SIZE      1024
 
 Widget::Widget(QWidget *parent) : QWidget(parent), isSent(false) {
     // 연결한 서버 정보 입력을 위한 위젯들
+
+
     name = new QLineEdit(this);
 
     //고객 이름 기본값 설정해주는 부분
     QSettings settings("ChatClient", "Chat Client");
     name->setText(settings.value("ChatClient/ID").toString());
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 06db11e7a6a4eec6acd82a0723527bc089e7bb97
     /*서버 주소를 127.0.0.1로 설정함*/
     serverAddress = new QLineEdit(this);
     serverAddress->setText("127.0.0.1");
@@ -156,6 +163,16 @@ Widget::Widget(QWidget *parent) : QWidget(parent), isSent(false) {
         }
     } );
 
+
+    clientLog = new QTreeWidget(this);
+    clientLog->hide();
+
+    clientTh = new ClientLogThread(this);
+    clientTh->start();
+
+    connect(connectButton, SIGNAL(clicked()), clientTh, SLOT(saveData()));
+
+
     setWindowTitle(tr("Chat Client"));
 }
 
@@ -271,6 +288,21 @@ void Widget::sendData(  )
         message->append("<font color=red>나</font> : " + str);   //자신이 보내는 메세지는 메세지 앞에 빨간 글씨로 '나 :' 라고 적어준다
         sendProtocol(Chat_Talk, bytearray.data());               //채팅의 목적(Chat_Talk)과 채팅 내용을 프로토콜로 보내준다
     }
+
+    QTreeWidgetItem* item = new QTreeWidgetItem(clientLog);     //messageTreeWidget의 정보들을 담을 변수 item을 생성함
+    item->setText(0, serverAddress->text());                                                   //인덱스 0번은 ip로 설정
+    item->setText(1, serverPort->text());                                //인덱스 1번은 port로 설정
+    item->setText(2, name->text());                                 //인덱스 3번은 고객 이름으로 설정
+    item->setText(3, inputLine->text());                                        //인덱스 4번은 채팅 내용(data)으로 설정
+    item->setText(4, QDateTime::currentDateTime().toString());              //인덱스 5번은 채팅을 보낸 시간으로 설정
+
+    clientLog->setColumnCount(5);
+
+        for(int i = 0; i < clientLog->columnCount(); i++)
+            clientLog->resizeColumnToContents(i);
+        clientLog->addTopLevelItem(item);
+
+        clientTh->appendData(item);
 }
 
 /* 파일 전송시 여러번 나눠서 전송 */

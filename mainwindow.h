@@ -12,7 +12,7 @@ class ProductManagerForm;
 class ShopManagerForm;
 class ChatServerForm;
 class Widget;
-
+class ClientLogThread;
 
 class MainWindow : public QMainWindow
 {
@@ -40,6 +40,7 @@ private:
     ShopManagerForm* orderForm;
     ChatServerForm* serverForm;
     Widget* wd;
+    ClientLogThread* clientLogTh;
 
 
 };

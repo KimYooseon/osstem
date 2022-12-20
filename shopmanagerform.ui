@@ -16,6 +16,8 @@
   <layout class="QHBoxLayout" name="horizontalLayout_2">
    <item>
     <layout class="QGridLayout" name="gridLayout_3">
+<<<<<<< HEAD
+=======
      <item row="1" column="1">
       <widget class="QTreeWidget" name="treeWidget">
        <property name="rootIsDecorated">
@@ -72,10 +74,25 @@
        </column>
       </widget>
      </item>
+>>>>>>> 06db11e7a6a4eec6acd82a0723527bc089e7bb97
      <item row="0" column="1">
       <widget class="QTableView" name="shopTableView">
        <property name="editTriggers">
         <set>QAbstractItemView::NoEditTriggers</set>
+<<<<<<< HEAD
+       </property>
+       <property name="alternatingRowColors">
+        <bool>true</bool>
+       </property>
+       <property name="selectionBehavior">
+        <enum>QAbstractItemView::SelectRows</enum>
+       </property>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+      </widget>
+     </item>
+=======
        </property>
        <property name="alternatingRowColors">
         <bool>true</bool>
@@ -427,22 +444,31 @@
 >>>>>>> 5c7d7596cc6e7c0746ae023420c18bb27f3356ad
 >>>>>>> d4bb97a7110e1e254903e178b9e5539cff2110d3
      </item>
+>>>>>>> 06db11e7a6a4eec6acd82a0723527bc089e7bb97
     </layout>
    </item>
    <item>
     <widget class="QToolBox" name="toolBox">
      <property name="currentIndex">
+<<<<<<< HEAD
+      <number>1</number>
+=======
       <number>0</number>
+>>>>>>> 06db11e7a6a4eec6acd82a0723527bc089e7bb97
      </property>
      <widget class="QWidget" name="inputPage">
       <property name="geometry">
        <rect>
         <x>0</x>
 <<<<<<< HEAD
+        <y>0</y>
+=======
+<<<<<<< HEAD
         <y>-53</y>
 =======
         <y>0</y>
 >>>>>>> d4bb97a7110e1e254903e178b9e5539cff2110d3
+>>>>>>> 06db11e7a6a4eec6acd82a0723527bc089e7bb97
         <width>269</width>
         <height>314</height>
        </rect>
@@ -633,6 +659,12 @@
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>
 <<<<<<< HEAD
+        <widget class="QTableView" name="searchTableView">
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+=======
+<<<<<<< HEAD
         <widget class="QTableView" name="searchTableView"/>
        </item>
        <item>
@@ -687,6 +719,7 @@
            <string>Phone Number</string>
           </property>
          </column>
+>>>>>>> 06db11e7a6a4eec6acd82a0723527bc089e7bb97
         </widget>
        </item>
        <item>
@@ -695,17 +728,29 @@
           <widget class="QComboBox" name="searchComboBox">
            <item>
             <property name="text">
+<<<<<<< HEAD
+             <string>SID</string>
+=======
              <string>ID</string>
+>>>>>>> 06db11e7a6a4eec6acd82a0723527bc089e7bb97
             </property>
            </item>
            <item>
             <property name="text">
+<<<<<<< HEAD
+             <string>CID</string>
+=======
              <string>Name</string>
+>>>>>>> 06db11e7a6a4eec6acd82a0723527bc089e7bb97
             </property>
            </item>
            <item>
             <property name="text">
+<<<<<<< HEAD
+             <string>PID</string>
+=======
              <string>Product Name</string>
+>>>>>>> 06db11e7a6a4eec6acd82a0723527bc089e7bb97
             </property>
            </item>
            <item>
