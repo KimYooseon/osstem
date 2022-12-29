@@ -10,10 +10,12 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    dog.cpp
+    dog.cpp \
+    widget.cpp
 
 HEADERS += \
-    dog.h
+    dog.h \
+    widget.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

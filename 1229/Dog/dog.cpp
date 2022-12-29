@@ -34,7 +34,7 @@ void dog::simple(){
     QString str1 = QLatin1String("This is a test string");
     QString str2 = QLatin1String("This is a test string");
     QCOMPARE(str1.localeAwareCompare(str2), 0);
-    QBENCHMARK{
+    QBENCHMARK_ONCE{
         str1.localeAwareCompare(str2);
     }
 }
